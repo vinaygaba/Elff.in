@@ -6,6 +6,7 @@ var request = require('request');
 var http = require('http');
 var url = require('url');
 var routes = require('./routes.js');
+var BASE_URL = "http://elff.in/";
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -38,12 +39,11 @@ router.route('/getShortUrl')
 
 // create a new short url (accessed at POST http://localhost:8080/api/getShortUrl)
 .post(function(req, res) {
-  console.log("Got getShortUrl request");
   routes.getShortUrl(req,handleResult)
 
   //Handle Response
   function handleResult(response){
-    res.json({ message: response});
+    res.json({ shortUrl: BASE_URL + response});
   }
 
   // res.json({ message: 'Student created!' });
@@ -55,14 +55,17 @@ router.route('/getShortUrl')
 router.route('/redirect')
 
 // create a new short url (accessed at POST http://localhost:8080/api/getShortUrl)
-.get(function(req, res) {
+.post(function(req, res) {
 
   routes.redirect(req,handleResult)
 
   //Handle Response
-  function handleResult(response){
+  function handleResult(response,error){
     //console.log(response);
-    res.json({ message: response});
+    //res.json({ longURL: response});
+    if(response!=null){
+      res.redirect(response);
+    }
   }
 
   // res.json({ message: 'Student created!' });
