@@ -1,0 +1,17 @@
+html
+  head
+    title
+    |     
+    script(src='js/script.js')
+  |   
+  body
+    h1 Elff.in
+    |     
+    br
+    |     
+    form(action="post('/getShortUrl',{longURL:document.getElementById('url').value})")
+      | URL: 
+      input#url(type='text', name='url')
+      br
+      |       
+      input(type='submit', value='Submit')

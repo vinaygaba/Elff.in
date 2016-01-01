@@ -6,6 +6,7 @@ var request = require('request');
 var http = require('http');
 var url = require('url');
 var routes = require('./routes.js');
+var path = require('path');
 var BASE_URL = "http://elff.in/";
 
 // configure app to use bodyParser()
@@ -31,6 +32,7 @@ router.use(function(req, res, next) {
 router.get('/', function(req,res) {
   var queryData = url.parse(req.url, true).query;
   console.log("Got the request");
+  res.render('index', { title: 'Hey', message: 'Hello there!', scripts: ['js/script.js']});
 });
 
 
@@ -43,6 +45,7 @@ router.route('/getShortUrl')
 
   //Handle Response
   function handleResult(response){
+    console.log(BASE_URL + response);
     res.json({ shortUrl: BASE_URL + response});
   }
 
@@ -52,10 +55,11 @@ router.route('/getShortUrl')
 });
 
 //API endpoint to add student to the students table
-router.route('/redirect')
+//router.route('/redirect')
+router.route('/:shortURL')
 
 // create a new short url (accessed at POST http://localhost:8080/api/getShortUrl)
-.post(function(req, res) {
+.get(function(req, res) {
 
   routes.redirect(req,handleResult)
 
@@ -78,8 +82,10 @@ router.route('/redirect')
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', router);
+app.use('/', router);
 //Setup rotuing for app
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
 // START THE SERVER

@@ -16,17 +16,22 @@ if (process.env.REDISTOGO_URL) {
 exports.redirect = function(req, callback) {
   console.log("Got redirect request!");
   console.log(req.originalUrl);
-  var shortURL = req.body.shortURL;
-  var length = shortURL.length;
-  var hash = shortURL.substring(length-6,length);
+  // var shortURL = req.body.shortURL;
+  // var length = shortURL.length;
+  // var hash = shortURL.substring(length-6,length);
+  var hash = req.params.shortURL;
 
   client.get(hash, function(err, reply) {
     // reply is null when the key is missing
-    if(reply == null){
+    if(err){
+      console.log(err);
+    }else{
+      if(reply == null){
 
-    }
-    else{
-      callback(reply);
+      }
+      else{
+        callback(reply);
+      }
     }
   });
 
@@ -37,19 +42,28 @@ exports.redirect = function(req, callback) {
 exports.getShortUrl = function(req, callback) {
   console.log("Got getShortUrl request!");
   var longURL = req.body.longURL;
+  console.log("Long URL IS " + longURL);
   var shortId = generateShortId(longURL);
   client.get(shortId, function(err, reply) {
     // reply is null when the key is missing
+    if(err){
+
+    }else{
     if(reply == null){
 
       client.set(shortId,longURL,function(err,res){
+        if(err){
+          console.log(err);
+        } else{
         console.log("Saved new value in redis");
         callback(shortId);
+      }
       });
     }
     else{
       getShortUrl();
     }
+  }
 });
 }
 
