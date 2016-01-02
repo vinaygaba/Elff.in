@@ -12,5 +12,8 @@
     "redis": "*",
     "request": "*",
     "url": "*"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }
