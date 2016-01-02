@@ -1,4 +1,5 @@
-html
+doctype html
+html(lang='en')
   head
     meta(charset='utf-8')
 
@@ -16,11 +17,11 @@ html
 
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
 
-    link(href='/css/style.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js')
     script(src='/js/script.js')
 
-  body(ng-app="elff",  ng-controller="postController")
+  body(ng-app="elff")
     .site-wrapper
       .site-wrapper-inner
         .cover-container
@@ -31,15 +32,17 @@ html
           .inner.cover
             h1.cover-heading Make your links short!
 
-            p.lead Do you hate it when the URLs exceed the 140 character limit on Twitter? Then you&apos;ve come to the right place.
+            p.lead
+               Do your hate it when the URLs exceed the 140 character limit on Twitter? Then you&apos;ve come to the right place.
 
             p.lead
-
+              
               input.form-control(type='text', placeholder='Enter the URL', aria-describedby='basic-addon1', ng-model="longURL", required, autofocus = "true", id = "longURL", ng-keyup="$event.keyCode == 13?post(longURL):null")
 
           .mastfoot
             .inner
-              p Made by 
+              p
+                 Made by
                 a(href='https://twitter.com/vinaygaba') @vinaygaba
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')

@@ -1,17 +1,16 @@
 html
   head
     title
-    |     
-    script(src='js/script.js')
-  |   
-  body
+
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.js')
+    script(src='/js/script.js')
+    meta(name="viewport", content="width=device-width, user-scalable=no")
+  body(ng-app="elff")
     h1 Elff.in
-    |     
+
     br
-    |     
-    form(action="post('/getShortUrl',{longURL:document.getElementById('url').value})")
-      | URL: 
-      input#url(type='text', name='url')
+
+    form(name = 'form', novalidate, ng-controller="postController")
+      input.longURL(type="url", placeholder = "Enter the URL", ng-model="longURL", required, autofocus = "true", id = "longURL", class = "longURL",name = "url", ng-keyup="$event.keyCode == 13?post(longURL):null")
       br
-      |       
-      input(type='submit', value='Submit')
+      input(type='button', value='Submit', toggle-btn, ng-submit="post(url)")
