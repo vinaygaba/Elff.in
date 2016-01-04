@@ -1,6 +1,6 @@
 {
-  "name": "microservice_project",
-  "main": "gateway.js",
+  "name": "www.elff.in",
+  "main": "app.js",
   "dependencies": {
     "async": "*",
     "body-parser": "~1.0.1",
