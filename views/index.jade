@@ -39,7 +39,7 @@ html
 
             p.lead
 
-              input.form-control(type='text', placeholder='Enter the URL', aria-describedby='basic-addon1', ng-model="longURL", autofocus = "true", id = "longURL", ng-keyup="$event.keyCode == 13?post(longURL):null")
+              input.form-control(type='text', placeholder='Enter the URL', ng-model="longURL", autofocus = "true", id = "longURL", ng-keyup="$event.keyCode == 13?post(longURL):null")
 
           .mastfoot
             .inner
