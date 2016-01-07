@@ -54,6 +54,27 @@ router.route('/getShortUrl')
 
 });
 
+
+//API endpoint to add student to the students table
+router.route('/customUrl')
+
+// create a new short url (accessed at POST http://localhost:8080/api/getShortUrl)
+.post(function(req, res) {
+  routes.getCustomURL(req,handleResult)
+
+  //Handle Response
+  function handleResult(response){
+    console.log(BASE_URL + response);
+    res.json({ shortUrl: BASE_URL + response});
+  }
+
+  // res.json({ message: 'Student created!' });
+  //Logic to save the student to db
+
+});
+
+
+
 //API endpoint to add student to the students table
 //router.route('/redirect')
 router.route('/:shortURL')

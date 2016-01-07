@@ -67,6 +67,35 @@ exports.getShortUrl = function(req, callback) {
 });
 }
 
+
+exports.getCustomURL = function(req,callback){
+
+  var shortURL = req.body.shortURL;
+  var longURL = req.body.longURL;
+
+  client.get(shortURL, function(err, reply) {
+
+    if(err){
+
+    } else{
+        if(reply==null){
+          client.set(shortURL,longURL,function(err,res){
+            if(err){
+              console.log(err);
+            }
+            else{
+            console.log("Saved new value in redis");
+            callback(shortURL);
+            }
+          });
+        }else{
+          //reply not null
+          callback("URL already exists");
+        }
+    }
+  });
+}
+
 var generateShortId = function(longURL) {
     //logic to generate short id
     var shortID = "";
