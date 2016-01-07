@@ -38,8 +38,8 @@ html
             p.lead Do you hate it when the URLs exceed the 140 character limit on Twitter? Then you&apos;ve come to the right place.
 
             p.lead
-
-              input.form-control(type='text', placeholder='Enter the URL', ng-model="longURL", autofocus = "true", id = "longURL", ng-keyup="$event.keyCode == 13?post(longURL):$event")
+              div.input-group
+                input.form-control(type='text', placeholder='Enter the URL', ng-model="longURL", autofocus = "true", id = "longURL", ng-keyup="$event.keyCode == 13?post(longURL):$event")
 
           .mastfoot
             .inner
