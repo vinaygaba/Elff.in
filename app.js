@@ -7,7 +7,7 @@ var http = require('http');
 var url = require('url');
 var routes = require('./routes.js');
 var path = require('path');
-var BASE_URL = "www.elff.in/";
+var BASE_URL = "elff.in/";
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
