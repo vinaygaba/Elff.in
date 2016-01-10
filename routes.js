@@ -1,7 +1,7 @@
 // var redis = require('redis');
 // var redisClient = redis.createClient();
 var client;
-var LENGTH = 6;
+var LENGTH = 5;
 
 if (process.env.REDISTOGO_URL) {
     var rtg   = require("url").parse(process.env.REDISTOGO_URL);
